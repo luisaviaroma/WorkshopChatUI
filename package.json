@@ -38,6 +38,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.5",
+    "env-cmd": "^8.0.2",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
     "enzyme-to-json": "^3.3.5",
@@ -58,11 +59,11 @@
   "scripts": {
     "test": "jest",
     "test:ci": "jest --runInBand",
-    "snapshot": "export PERCY_TOKEN=b10959044029700dd1ed88ef49e93f86fdb1f70f0a251de6a5f41e2b216853e4 && build-storybook && percy-storybook --widths=320,1280 --debug",
+    "snapshot": "build-storybook && env-cmd ./env/.test percy-storybook --widths=320,1280 --debug",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook -o docs",
     "version": "yarn run build && git add -Af dist && npm publish --access=public",
-    "build": "rollup -c",
+    "build": "env-cmd ./env/.prod rollup -c",
     "postversion": "git push && git push --tags"
   }
 }
