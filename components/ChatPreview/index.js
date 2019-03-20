@@ -151,7 +151,7 @@ const ChatPreview = ({ title, image, badge, lastMessage, status, active, infoPre
         <Title>{title}</Title>
         {!!status && <Status>{status}</Status>}
       </div>
-      {!!lastMessage && <LastMessage>{moment(lastMessage.time).fromNow()}</LastMessage>}
+      {!!lastMessage && lastMessage.time && <LastMessage>{moment(lastMessage.time).fromNow()}</LastMessage>}
     </CardContainer>
 
     {!!lastMessage && <MessagesBriefContainer>

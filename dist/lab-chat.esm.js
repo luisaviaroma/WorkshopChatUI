@@ -198,6 +198,7 @@ var SearchBox = function SearchBox(_ref) {
     onSubmit: onSubmit,
     action: ""
   }, React.createElement("label", {
+    "aria-label": "search",
     htmlFor: "labChatSearchInput"
   }, React.createElement(IconContainer$1, null, React.createElement(FontAwesomeIcon, {
     icon: "search",
@@ -207,8 +208,7 @@ var SearchBox = function SearchBox(_ref) {
     type: "search",
     placeholder: placeholder,
     value: value,
-    onChange: onChange,
-    autoComplete: "off"
+    onChange: onChange
   })));
 };
 
@@ -382,7 +382,7 @@ var ChatPreview = function ChatPreview(_ref) {
       flex: 1,
       marginLeft: '15px'
     }
-  }, React.createElement(Title, null, title), !!status && React.createElement(Status, null, status)), !!lastMessage && React.createElement(LastMessage, null, moment(lastMessage.time).fromNow())), !!lastMessage && React.createElement(MessagesBriefContainer, null, React.createElement(MessageBrief, null, lastMessage.message), !!badge && React.createElement(Badge, null, badge)));
+  }, React.createElement(Title, null, title), !!status && React.createElement(Status, null, status)), !!lastMessage && lastMessage.time && React.createElement(LastMessage, null, moment(lastMessage.time).fromNow())), !!lastMessage && React.createElement(MessagesBriefContainer, null, React.createElement(MessageBrief, null, lastMessage.message), !!badge && React.createElement(Badge, null, badge)));
 };
 
 ChatPreview.defaultProps = {
@@ -493,7 +493,7 @@ var Message = function Message(_ref) {
     onClick: onClick
   }, React.createElement(MessageContainerInner, null, React.createElement(MessageBrief$1, null, message), React.createElement(BubbleMessageContainer, null, React.createElement(bubbleMessage, {
     fill: received ? '#fff' : '#F44A4A'
-  }))), dateMessage && React.createElement(MessageDate, null, moment(dateMessage.time).fromNow()));
+  }))), dateMessage && React.createElement(MessageDate, null, moment(dateMessage).fromNow()));
 };
 
 Message.defaultProps = {

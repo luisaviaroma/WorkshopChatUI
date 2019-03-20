@@ -5,30 +5,32 @@ import BubbleMessage from './bubbleMessage';
 
 const MessageContainer = styled.div`
   box-sizing: border-box;
-  display: flex;
+  display: block;
   flex-direction: column;
   padding: 0;
   background-color: transparent;
   max-width: 50%;
   position: relative;
-  align-self: ${props => props.received ? 'flex-start' : 'flex-end'};
+  align-self: ${props => (props.received ? 'flex-start' : 'flex-end')};
 
-  ${props => props.received && css`
-    ${BubbleMessageContainer} {
-      left: 3px;
-      right: auto;
-      transform: rotate(-15deg);
-    }
-    ${MessageBrief} {
-      color: #000;
-      background: #fff;
-    }
-    ${MessageDate} {
-      align-self: flex-start;
-      margin-left: 20px;
-      margin-right: auto;
-    }
-  `}
+  ${props =>
+    props.received &&
+    css`
+      ${BubbleMessageContainer} {
+        left: 3px;
+        right: auto;
+        transform: rotate(-15deg);
+      }
+      ${MessageBrief} {
+        color: #000;
+        background: #fff;
+      }
+      ${MessageDate} {
+        align-self: flex-start;
+        margin-left: 20px;
+        margin-right: auto;
+      }
+    `}
 `;
 
 const MessageContainerInner = styled.div`
@@ -36,7 +38,7 @@ const MessageContainerInner = styled.div`
   z-index: 2;
   display: flex;
   flex-direction: column;
-  filter: drop-shadow(0px 1px 6px rgba(0, 0, 0, .1));
+  filter: drop-shadow(0px 1px 6px rgba(0, 0, 0, 0.1));
 `;
 
 const BubbleMessageContainer = styled.div`
@@ -61,7 +63,7 @@ const MessageBrief = styled.div`
   border-radius: 100px;
   display: inline-block;
   color: #fff;
-  background: #F44A4A;
+  background: #f44a4a;
 `;
 
 const MessageDate = styled.div`
@@ -89,7 +91,7 @@ const Message = ({ message, type, dateMessage, onClick, received }) => (
         <BubbleMessage fill={received ? '#fff' : '#F44A4A'} />
       </BubbleMessageContainer>
     </MessageContainerInner>
-    {dateMessage && <MessageDate>{moment(dateMessage.time).fromNow()}</MessageDate>}
+    {dateMessage && <MessageDate>{moment(dateMessage).fromNow()}</MessageDate>}
   </MessageContainer>
 );
 
@@ -98,7 +100,7 @@ Message.defaultProps = {
   type: 'text',
   dateMessage: null,
   received: true,
-  onClick: () => { }
+  onClick: () => {}
 };
 
-export default Message
+export default Message;
