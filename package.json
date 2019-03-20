@@ -29,6 +29,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.12",
     "@fortawesome/free-solid-svg-icons": "^5.6.3",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "@percy-io/percy-storybook": "^2.1.0",
     "@storybook/addon-actions": "^4.1.6",
     "@storybook/addon-knobs": "^4.1.6",
     "@storybook/addon-links": "^4.1.6",
@@ -37,6 +38,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.5",
+    "env-cmd": "^8.0.2",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
     "enzyme-to-json": "^3.3.5",
@@ -57,10 +59,11 @@
   "scripts": {
     "test": "jest",
     "test:ci": "jest --runInBand",
+    "snapshot": "build-storybook && env-cmd ./env/.test percy-storybook --widths=320,1280 --debug",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook -o docs",
     "version": "yarn run build && git add -Af dist && npm publish --access=public",
-    "build": "rollup -c",
+    "build": "env-cmd ./env/.prod rollup -c",
     "postversion": "git push && git push --tags"
   }
 }

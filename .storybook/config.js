@@ -1,7 +1,14 @@
 import React from 'react';
-import { configure, addDecorator } from '@storybook/react';
+import { createGlobalStyle } from 'styled-components';
 
-import { createGlobalStyle } from 'styled-components'
+// import { configure, addDecorator } from '@storybook/react';
+import { configure, getStorybook, setAddon, addDecorator } from '@storybook/react';
+import createPercyAddon from '@percy-io/percy-storybook';
+
+const { percyAddon, serializeStories } = createPercyAddon();
+
+setAddon(percyAddon);
+
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -9,7 +16,8 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
-`
+`;
+
 
 const styles = {
   // .main-wrapper
@@ -48,3 +56,4 @@ function loadStories() {
 }
 
 configure(loadStories, module);
+serializeStories(getStorybook);
